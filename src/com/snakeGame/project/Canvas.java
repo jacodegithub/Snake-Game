@@ -8,6 +8,7 @@ import java.awt.event.KeyListener;
 public class Canvas extends JPanel implements Runnable, KeyListener {
     private JFrame frame;
     private Snake snake;
+    private Egg egg;
     private Thread thread;
     private boolean gameOver = false;
 
@@ -15,6 +16,7 @@ public class Canvas extends JPanel implements Runnable, KeyListener {
         thread = new Thread(this);
 
         snake = new Snake();
+        egg = new Egg(snake);
 
         frame = new JFrame("Snake Game");
         frame.setSize(400, 400);
@@ -37,10 +39,11 @@ public class Canvas extends JPanel implements Runnable, KeyListener {
     public void paint(Graphics g) {
         super.paint(g);
         Graphics2D g2d = (Graphics2D) g;
-        g2d.setColor(Color.BLACK);
+        g2d.setColor(Color.white);
         g2d.fillRect(0, 0, 400, 400);
 
         snake.draw(g2d);
+        egg.draw(g2d);
     }
 
     public void checkGameOver() {
@@ -69,7 +72,7 @@ public class Canvas extends JPanel implements Runnable, KeyListener {
 
             snake.move();
             this.checkGameOver();
-
+            egg.snakeEggCollision();
 
             try {
                 Thread.sleep(30);
