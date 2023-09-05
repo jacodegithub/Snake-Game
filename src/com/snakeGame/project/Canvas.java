@@ -42,8 +42,18 @@ public class Canvas extends JPanel implements Runnable, KeyListener {
         g2d.setColor(Color.white);
         g2d.fillRect(0, 0, 400, 400);
 
-        snake.draw(g2d);
-        egg.draw(g2d);
+        if(!gameOver) {
+            g2d.setColor(Color.black);
+            g2d.setFont(new Font("Poppins",Font.BOLD, 50));
+            g2d.drawString(String.valueOf(egg.getScore()), 340, 50);
+            snake.draw(g2d);
+            egg.draw(g2d);
+        }
+        else {
+            g2d.setColor(Color.red);
+            g2d.setFont(new Font("Poppins", Font.BOLD, 20));
+            g2d.drawString("GAME OVER..!", 120, 150);
+        }
     }
 
     public void checkGameOver() {
