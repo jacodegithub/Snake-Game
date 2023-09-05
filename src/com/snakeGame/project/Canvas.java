@@ -19,6 +19,7 @@ public class Canvas extends JPanel implements Runnable, KeyListener {
         frame = new JFrame("Snake Game");
         frame.setSize(400, 400);
         frame.setVisible(true);
+        frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.add(this);
 
@@ -86,13 +87,6 @@ public class Canvas extends JPanel implements Runnable, KeyListener {
     @Override
     public void keyPressed(KeyEvent e) {
 
-//        if(snake.getXDir() == 0 && snake.getYDir() == 0 &&
-//            snake.getSnakePoints().get(snake.getSnakePoints().size() - 1).getX() == 0 &&
-//            snake.getSnakePoints().get(snake.getSnakePoints().size() - 1).getY() == 0
-//        ) {
-//
-//        }
-
         if(e.getKeyCode() == KeyEvent.VK_LEFT) {
             if(snake.getXDir() != 1) {
                 snake.setXDir(-1);
@@ -101,7 +95,6 @@ public class Canvas extends JPanel implements Runnable, KeyListener {
             }
         }
         if(e.getKeyCode() == KeyEvent.VK_RIGHT) {
-            System.out.println(snake.getXDir());
             if(snake.getXDir() != -1) {
                 snake.setXDir(1);
                 snake.setYDir(0);
